@@ -1,417 +1,147 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>mavi dev — сайты под ключ</title>
-    <meta
-      name="description"
-      content="Разработка и реализация полного цикла — от структуры и дизайна до готового сайта. mavi dev."
-    />
-    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Russo+One&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <main id="top">
-      <section class="banner">
-        <div class="hero-red" aria-hidden="true"></div>
-        <header class="header">
-          <a class="logo" href="#top" aria-label="mavi dev">
-            <span class="logo-slash">/</span>
-            <span class="logo-name">mavi</span>
-            <span class="logo-bar" aria-hidden="true">l</span>
-            <span class="logo-dev">dev</span>
-          </a>
-          <nav class="nav" aria-label="Разделы">
-            <a class="nav-link" href="#tariffs">Тарифы</a>
-            <a class="nav-link" href="#cases">Кейсы</a>
-            <a class="nav-link" href="#contact">Контакты</a>
-          </nav>
-        </header>
-        <div class="hero">
-          <div class="hero-copy">
-            <h1>Сайты<br />под ключ</h1>
-            <p class="lead">
-              Разработка и реализация<br />
-              полного цикла – от структуры<br />
-              и дизайна до готового сайта
-            </p>
-            <div class="chips">
-              <a class="chip" href="#services">Дизайн</a>
-              <a class="chip" href="#services">Разработка</a>
-              <a class="chip" href="#services">CMS</a>
-            </div>
-          </div>
-          <div class="hero-visual">
-            <img
-              class="devices"
-              src="images/devices.png"
-              alt="Ноутбук и телефон с сайтом «Архитектура для жизни»"
-            />
-          </div>
-        </div>
-      </section>
-
-      <section class="features" aria-label="Как я работаю">
-        <article>
-          <p class="num">01</p>
-          <h2>Думаю не только<br />о дизайне</h2>
-          <p>Структура, сценарии пользователя и контент до визуальной оболочки</p>
-        </article>
-        <span class="rule" aria-hidden="true"></span>
-        <article>
-          <p class="num">02</p>
-          <h2>Проект под ключ<br />без команды</h2>
-          <p>Не нужно собирать дизайнера, разработчика и человека для наполнения</p>
-        </article>
-        <span class="rule" aria-hidden="true"></span>
-        <article>
-          <p class="num">03</p>
-          <h2>Сайт остается<br />управляемым</h2>
-          <p>После запуска вы получаете не картинку, а рабочий инструмент с понятной админкой</p>
-        </article>
-      </section>
-
-      <section class="services" id="services">
-        <div class="can" id="can">
-          <div class="svc-col">
-            <p class="idx"><span>03</span>/10</p>
-            <h2 class="block-title">Что я могу сделать</h2>
-            <div class="svc-grid" role="list">
-            <button class="svc is-on" type="button" data-stage="0" role="listitem">
-              <span>01</span> Анализ и структура
-            </button>
-            <button class="svc" type="button" data-stage="3" role="listitem">
-              <span>06</span> Наполнение контентом
-            </button>
-            <button class="svc" type="button" data-stage="1" role="listitem">
-              <span>02</span> Прототипирование
-            </button>
-            <button class="svc" type="button" data-stage="3" role="listitem">
-              <span>07</span> Подключение CMS
-            </button>
-            <button class="svc" type="button" data-stage="2" role="listitem">
-              <span>03</span> UI/UX-дизайн
-            </button>
-            <button class="svc" type="button" data-stage="3" role="listitem">
-              <span>08</span> Настройка админки
-            </button>
-            <button class="svc" type="button" data-stage="3" role="listitem">
-              <span>04</span> Разработка сайта
-            </button>
-            <button class="svc" type="button" data-stage="3" role="listitem">
-              <span>09</span> Интеграции
-            </button>
-            <button class="svc" type="button" data-stage="3" role="listitem">
-              <span>05</span> Адаптивная версия
-            </button>
-            <button class="svc" type="button" data-stage="4" role="listitem">
-              <span>10</span> Запуск сайта
-            </button>
-            </div>
-          </div>
-
-          <div class="proto" aria-hidden="true">
-            <div class="proto-sheet is-on" data-proto="0">
-              <i></i><i></i><i class="short"></i>
-            </div>
-            <div class="proto-sheet" data-proto="1">
-              <b></b><b></b><b></b>
-            </div>
-            <div class="proto-sheet" data-proto="2">
-              <b class="tone"></b><b></b><b class="tone"></b>
-            </div>
-            <div class="proto-sheet" data-proto="3">
-              <i></i><i class="short"></i><i></i><i class="short"></i>
-            </div>
-            <div class="proto-sheet" data-proto="4">
-              <span class="proto-ok">Запуск</span>
-            </div>
-          </div>
-
-          <div class="stages" id="stages">
-            <span class="dot" id="stage-dot"></span>
-            <button class="stage is-on" type="button" data-stage="0">Анализ</button>
-            <button class="stage" type="button" data-stage="1">Прототип</button>
-            <button class="stage" type="button" data-stage="2">Дизайн</button>
-            <button class="stage" type="button" data-stage="3">Разработка</button>
-            <button class="stage" type="button" data-stage="4">Запуск</button>
-          </div>
-        </div>
-      </section>
-
-      <section class="block need" id="need">
-        <div class="need-grid">
-          <div class="need-copy">
-            <p class="idx"><span>04</span>/10</p>
-            <h2 class="block-title">Вам нужен сайт, если:</h2>
-            <ul class="reasons">
-              <li>Старый сайт уже не отражает ваш бизнес</li>
-              <li>Клиенту сложно понять, что вы предлагаете</li>
-              <li>Сайт выглядит хуже самого продукта</li>
-              <li>Информацию приходится менять, прибегая к услугам подрядчиков</li>
-              <li class="is-hot">Вам нужен не шаблон, а решение под конкретную<br />задачу</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="japan-stage" id="japan-stage">
-          <div class="japan-red"></div>
-          <div class="japan-frame" id="japan-frame">
-            <img
-              class="sushi-shot"
-              src="images/sushi-hero.png"
-              alt="Сайт SUSHI+: Вкус Японии рядом"
-            />
-          </div>
-        </div>
-      </section>
-
-      <section class="block tariffs" id="tariffs">
-        <div class="cost-head">
-          <p class="idx"><span>05</span>/10</p>
-          <h2 class="block-title">Стоимость</h2>
-        </div>
-        <article class="cost-card">
-          <div class="cost-main">
-            <p class="cost-lead">
-              Финальная стоимость зависит от вашего запроса.<br />
-              Мы создаем сайты под ключ – с учетом ваших целей, задач и особенностей бизнеса.
-            </p>
-            <div class="cost-panel">
-              <div class="cost-price">
-                <p>Цены начинаются от</p>
-                <strong>$800</strong>
-                <span>без учета НДС</span>
-              </div>
-              <div class="cost-sep" aria-hidden="true">
-                <span></span>
-                <svg class="cost-arrow" viewBox="0 0 35 34" width="17.5" height="17">
-                  <path d="M1.6 17H31.6M16.6 2 31.6 17 16.6 32" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-              <p class="cost-note">
-                Чтобы узнать точную стоимость,<br />
-                заполните бриф – мы свяжемся<br />
-                с вами и рассчитаем<br />
-                индивидуальное предложение.
-              </p>
-            </div>
-          </div>
-          <aside class="cost-red">
-            <a class="cost-brief" href="brief.txt" download>
-              <span>Скачать бриф<br />на заполнение</span>
-              <svg class="cost-arrow" viewBox="0 0 35 34" width="17.5" height="17" aria-hidden="true">
-                <path d="M1.6 17H31.6M16.6 2 31.6 17 16.6 32" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
-            <p>Среднее время заполнения – 10 минут</p>
-          </aside>
-        </article>
-      </section>
-
-      <section class="block cases" id="cases">
-        <div class="cases-inner">
-        <p class="idx"><span>06</span>/10</p>
-        <h2 class="block-title">Наши кейсы</h2>
-        <div class="case-card">
-          <div class="slides" id="cases-slides">
-            <article class="case-slide is-active">
-              <div class="case-copy">
-                <h3><i></i><span class="case-name">МЕБЕЛЬ ЗА ЗАКАЗ</span></h3>
-                <p class="meta">САЙТ / ДИЗАЙН / НАПОЛНЕНИЕ</p>
-                <p>Лендинг для сервиса платежей и интеграций с ЕРИП. Упор на простоту, доверие и понятные выгоды.</p>
-                <ul class="checks">
-                  <li>Рост заявок на 40%</li>
-                  <li>Упрощенная навигация и структура</li>
-                  <li>Четкие мессенджи и акценты на преимуществах</li>
-                  <li>Собственная CMS</li>
-                </ul>
-              </div>
-              <div class="case-visual">
-                <img src="images/case-mockup.png" alt="Ноутбук и телефон с макетом сайта" />
-              </div>
-            </article>
-
-            <article class="case-slide">
-              <div class="case-copy">
-                <h3><i></i>ВКУС ЯПОНИИ</h3>
-                <p class="meta">САЙТ / МЕНЮ / ДОСТАВКА</p>
-                <p>Сайт суши-бара: блюдо на первом экране, меню без лишних шагов и понятная доставка.</p>
-                <ul class="checks">
-                  <li>Заказ без звонка оператору</li>
-                  <li>Меню правится без разработчика</li>
-                  <li>Акцент на еде, а не на баннерах</li>
-                  <li>Экран, который не стыдно открыть с телефона</li>
-                </ul>
-              </div>
-              <div class="case-visual">
-                <div class="laptop laptop-case">
-                  <div class="laptop-lid">
-                    <div class="laptop-screen">
-                      <article class="mini mini-dark">
-                        <header class="mini-bar dark">
-                          <strong>SUSHI+</strong>
-                          <span>Меню</span>
-                          <span>Доставка</span>
-                        </header>
-                        <div class="mini-dark-body">
-                          <div>
-                            <h2>Вкус Японии<br />рядом</h2>
-                            <em>Перейти в меню</em>
-                          </div>
-                          <img src="images/sushi-rolls.jpg" alt="Роллы с лососем" />
-                        </div>
-                      </article>
-                    </div>
-                  </div>
-                  <div class="laptop-base"></div>
-                </div>
-              </div>
-            </article>
-
-            <article class="case-slide">
-              <div class="case-copy">
-                <h3><i></i>АРХИТЕКТУРА ДЛЯ ЖИЗНИ</h3>
-                <p class="meta">САЙТ / ПОРТФОЛИО / ЗАЯВКИ</p>
-                <p>Сайт бюро: проекты, метод и один спокойный следующий шаг для заказчика.</p>
-                <ul class="checks">
-                  <li>Портфолио без тяжёлой галереи</li>
-                  <li>Заявка в два поля</li>
-                  <li>Спокойная типографика и воздух</li>
-                  <li>Тексты, которые объясняют подход</li>
-                </ul>
-              </div>
-              <div class="case-visual">
-                <div class="laptop laptop-case">
-                  <div class="laptop-lid">
-                    <div class="laptop-screen">
-                      <article class="mini mini-arch">
-                        <header class="mini-bar">
-                          <strong>ARCH+</strong>
-                          <span>Проекты</span>
-                          <span>Бюро</span>
-                          <em>Обсудить</em>
-                        </header>
-                        <div class="mini-arch-body">
-                          <div>
-                            <h2>Архитектура<br />для жизни</h2>
-                            <em>Смотреть проекты</em>
-                          </div>
-                          <img src="images/architecture-bw.jpg" alt="Фасад современного дома" />
-                        </div>
-                      </article>
-                    </div>
-                  </div>
-                  <div class="laptop-base"></div>
-                </div>
-              </div>
-            </article>
-          </div>
-
-          <div class="pager" data-pager="cases">
-            <button class="pager-btn" type="button" data-dir="-1" aria-label="Предыдущий кейс">
-              <svg class="admin-arrow" viewBox="0 0 14.93 11.02" width="14.93" height="11.02" aria-hidden="true">
-                <g transform="translate(14.93 0) scale(-1 1)">
-                  <path d="M0 5.51H14.93" fill="none" stroke="currentColor" stroke-width="1.06" stroke-linecap="butt"/>
-                  <path d="M9.24 0.6 14.4 5.51 9.24 10.42" fill="none" stroke="currentColor" stroke-width="1.06" stroke-linecap="round" stroke-linejoin="round"/>
-                </g>
-              </svg>
-            </button>
-            <p class="pager-count"><b>01</b>/10</p>
-            <span class="pager-bar" aria-hidden="true"><span class="pager-bar-fill"></span></span>
-            <button class="pager-btn" type="button" data-dir="1" aria-label="Следующий кейс">
-              <svg class="admin-arrow" viewBox="0 0 14.93 11.02" width="14.93" height="11.02" aria-hidden="true">
-                <path d="M0 5.51H14.93" fill="none" stroke="currentColor" stroke-width="1.06" stroke-linecap="butt"/>
-                <path d="M9.24 0.6 14.4 5.51 9.24 10.42" fill="none" stroke="currentColor" stroke-width="1.06" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </button>
-          </div>
-        </div>
-        </div>
-      </section>
-
-      <section class="block admin" id="admin">
-        <div class="admin-inner">
-          <p class="idx"><span>07</span>/10</p>
-          <h2 class="block-title">Админ-панель</h2>
-          <div class="admin-grid">
-            <img class="admin-shot" src="images/admin-panel.png" width="699" height="368" alt="Админ-панель: страницы, предпросмотр сайта и быстрые действия" />
-            <div class="admin-copy">
-              <h3>Сайт – это не только то,<br />что видит пользователь</h3>
-              <p>Внутри каждого CMS – понятная система для управления контентом.</p>
-              <ul class="checks checks-2">
-                <li>Страницы</li>
-                <li>Товары</li>
-                <li>Новости</li>
-                <li>Команда</li>
-                <li>Заявки</li>
-                <li>Блоки</li>
-              </ul>
-              <p class="admin-foot">Можно сделать <b>любое</b> желаемое наполнение</p>
-            </div>
-            <div class="pager">
-              <button class="pager-btn" type="button" aria-label="Предыдущий экран админки">
-                <svg class="admin-arrow" viewBox="0 0 14.93 11.02" width="14.93" height="11.02" aria-hidden="true">
-                  <g transform="translate(14.93 0) scale(-1 1)">
-                    <path d="M0 5.51H14.93" fill="none" stroke="currentColor" stroke-width="1.06" stroke-linecap="butt"/>
-                    <path d="M9.24 0.6 14.4 5.51 9.24 10.42" fill="none" stroke="currentColor" stroke-width="1.06" stroke-linecap="round" stroke-linejoin="round"/>
-                  </g>
-                </svg>
-              </button>
-              <p class="pager-count"><b>01</b>/10</p>
-              <span class="pager-bar" aria-hidden="true"><span class="pager-bar-fill"></span></span>
-              <button class="pager-btn" type="button" aria-label="Следующий экран админки">
-                <svg class="admin-arrow" viewBox="0 0 14.93 11.02" width="14.93" height="11.02" aria-hidden="true">
-                  <path d="M0 5.51H14.93" fill="none" stroke="currentColor" stroke-width="1.06" stroke-linecap="butt"/>
-                  <path d="M9.24 0.6 14.4 5.51 9.24 10.42" fill="none" stroke="currentColor" stroke-width="1.06" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <div class="modal-layer" id="contact">
-      <a class="modal-backdrop" href="#top" aria-label="Закрыть"></a>
-      <form class="modal" action="#thanks">
-        <header>
-          <h2>Обсудить детали</h2>
-          <a class="modal-x" href="#top" aria-label="Закрыть">×</a>
-        </header>
-        <p class="modal-lead">Напишите, что нужно запустить. Отвечу по контакту, который оставите.</p>
-        <label>
-          Имя
-          <input name="name" autocomplete="name" required placeholder="Как к вам обращаться" />
-        </label>
-        <label>
-          Телефон или телеграм
-          <input name="contact" autocomplete="tel" required placeholder="@username или номер" />
-        </label>
-        <label>
-          Задача
-          <textarea name="task" required rows="4" placeholder="Сайт, срок, что уже есть"></textarea>
-        </label>
-        <button class="btn btn-red btn-wide" type="submit">Отправить</button>
-      </form>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f6f6f2">
+<title>Сайты под ключ — студия «форма»</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app-root" id="top">
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="Форма — на главную"><span class="brand-mark">ф.</span><span>форма<span style="color:var(--blue)">®</span></span></a>
+      <nav class="nav-links" id="navLinks" aria-label="Основная навигация">
+        <a href="#services">Что делаем</a><a href="#cases">Кейсы</a><a href="#admin">Админка</a><a href="#process">Как работаем</a><a href="#pricing">Стоимость</a>
+      </nav>
+      <a class="btn btn-dark" href="#contact">Обсудить проект <span class="arrow">↗</span></a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Открыть меню" aria-expanded="false">☰</button>
     </div>
+  </header>
 
-    <div class="modal-layer" id="thanks">
-      <a class="modal-backdrop" href="#top" aria-label="Закрыть"></a>
-      <div class="modal">
-        <header>
-          <h2>Спасибо</h2>
-          <a class="modal-x" href="#top" aria-label="Закрыть">×</a>
-        </header>
-        <p class="modal-lead">Я на связи и отвечу по указанному контакту.</p>
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <span class="eyebrow">Дизайн · разработка · запуск</span>
+          <h1>Сайты, которые<br>работают на <span class="accent">ваш бизнес.</span></h1>
+          <p class="lead">Продумываем, создаём и запускаем сайты под ключ. Красивые снаружи, понятные внутри и готовые превращать посетителей в клиентов.</p>
+          <div class="hero-actions"><a class="btn btn-dark" href="#contact">Обсудить мой сайт <span class="arrow">↗</span></a><a class="btn btn-outline" href="#cases">Смотреть кейсы <span class="arrow">↓</span></a></div>
+          <div class="hero-note"><div class="avatar-stack"><span class="avatar">М</span><span class="avatar">А</span><span class="avatar">К</span></div><span>От первого эскиза до готового сайта<br><strong style="color:var(--ink);font-weight:700">в одной команде</strong></span></div>
+        </div>
+        <div class="hero-art reveal" style="--delay:150ms" aria-label="Пример современного сайта в браузере">
+          <div class="hero-orbit"><span class="orbit-dot"></span></div>
+          <div class="browser">
+            <div class="browser-bar"><i></i><i></i><i></i><div class="browser-address">your-brand.ru</div></div>
+            <div class="mock-site">
+              <div class="mock-nav"><div class="mock-logo"><span></span> BONJOUR STUDIO</div><div class="mock-navlinks"><span>О нас</span><span>Услуги</span><span>Контакты</span></div></div>
+              <div class="mock-hero"><div><div class="mock-kicker">пространство для себя</div><div class="mock-title">Красота<br>в <em>простых</em><br>вещах.</div><div class="mock-desc">Создаём моменты, которые хочется сохранить.</div><div class="mock-cta">Открыть для себя <b>↗</b></div></div><div class="mock-photo"><div class="mock-sun"></div></div></div>
+              <div class="mock-bottom"><div class="mock-tile"><b>01 / Концепция</b><span>Смысл в каждой детали</span></div><div class="mock-tile"><b>02 / Впечатление</b><span>Запоминается надолго</span></div><div class="mock-tile"><b>03 / Результат</b><span>Больше поводов выбрать нас</span></div></div>
+            </div>
+          </div>
+          <div class="float-card stat-card"><small>Конверсия сайта</small><strong>+38,6%</strong><span class="up">↗ рост</span></div>
+          <div class="float-card quote-card"><div class="quote-stars">★★★★★</div><p>«Наконец сайт, который полностью ощущается как наш бренд»</p></div>
+          <div class="hero-stamp">ИДЕЯ<br>→ САЙТ<br>→ РЕЗУЛЬТАТ</div>
+        </div>
       </div>
-    </div>
-  </body>
+    </section>
+
+    <div class="ticker" aria-label="Всё для запуска вашего сайта"><div class="ticker-track" aria-hidden="true">
+      <div class="ticker-item">Стратегия и смысл</div><div class="ticker-item">Дизайн с характером</div><div class="ticker-item">Разработка под ключ</div><div class="ticker-item">Удобная админка</div><div class="ticker-item">Поддержка после запуска</div><div class="ticker-item">Стратегия и смысл</div><div class="ticker-item">Дизайн с характером</div><div class="ticker-item">Разработка под ключ</div><div class="ticker-item">Удобная админка</div><div class="ticker-item">Поддержка после запуска</div>
+    </div></div>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-head reveal"><div><span class="eyebrow">Полный цикл</span><h2>Не просто сайт.<br><span class="accent">Рабочий инструмент.</span></h2></div><p class="lead">Берём на себя весь путь — от первых вопросов о вашем бизнесе до публикации и настройки.</p></div>
+        <div class="services-grid">
+          <article class="service-card reveal" style="--delay:0ms"><div><div class="service-index"><span>01 / СМЫСЛ</span><span>→</span></div><div class="service-glyph"><div class="glyph-layout"></div></div></div><div><h3>Структура и дизайн</h3><p>Изучаем аудиторию, собираем логику страницы и создаём визуал, который помогает выбрать именно вас.</p></div></article>
+          <article class="service-card reveal" style="--delay:110ms"><div><div class="service-index"><span>02 / РАЗРАБОТКА</span><span>→</span></div><div class="service-glyph"><span class="glyph-spark">✳</span></div></div><div><h3>Сборка под ключ</h3><p>Адаптивная версия для телефона и компьютера, формы, интеграции и техническая подготовка к запуску.</p></div></article>
+          <article class="service-card reveal" style="--delay:220ms"><div><div class="service-index"><span>03 / СВОБОДА</span><span>→</span></div><div class="service-glyph"><span class="glyph-code">{ }</span></div></div><div><h3>Управление без кода</h3><p>Добавляйте услуги, меняйте тексты и обновляйте кейсы самостоятельно — через понятную админку.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cases" id="cases">
+      <div class="container">
+        <div class="section-head reveal"><div><span class="eyebrow">Избранные проекты</span><h2>Каждый сайт —<br>свой <span class="accent">характер.</span></h2></div><p class="lead">Дизайн начинается с вашей задачи. Не делаем одинаково — ищем визуальный язык, который подходит именно бренду.</p></div>
+        <div class="case-grid">
+          <article class="case-card reveal" style="--delay:0ms"><div class="case-visual art-botanica"><div class="botanica-window"><div class="botanica-nav"><span class="botanica-logo">botanica.</span><span>КОЛЛЕКЦИИ　 О НАС　 ↗</span></div><div class="botanica-content"><small>ритуалы на каждый день</small><h4>Ближе к<br>природе.</h4><p>Тихая эстетика. Чистые составы. Ваше время для себя.</p></div><div class="botanica-leaf"></div><div class="botanica-label">Made with<br>care ✳</div></div></div><div class="case-meta"><div><h3>Botanica — косметика</h3><p>Интернет-магазин · Айдентика · Каталог</p></div><span class="case-link" aria-hidden="true">↗</span></div></article>
+          <article class="case-card reveal" style="--delay:110ms"><div class="case-visual art-atelier"><div class="atelier-window"><div class="atelier-nav"><span>ATELIER / CREATIVE STUDIO</span><span>МЕНЮ +</span></div><div class="atelier-content"><h4>MAKE<br>IT <span>MATTER.</span></h4><p>Смелые идеи для брендов, которые не хотят быть как все.</p><span class="atelier-button">НАШИ ПРОЕКТЫ ↗</span></div><div class="atelier-orb"></div><div class="atelier-flower"></div></div></div><div class="case-meta"><div><h3>Atelier — креативная студия</h3><p>Имиджевый сайт · Анимации · Портфолио</p></div><span class="case-link" aria-hidden="true">↗</span></div></article>
+          <article class="case-card reveal" style="--delay:0ms"><div class="case-visual art-clinic"><div class="clinic-window"><div class="clinic-nav"><div class="clinic-logo"><span class="clinic-cross">✳</span> forma health</div><span>УСЛУГИ　 ВРАЧИ　 КОНТАКТЫ</span></div><div class="clinic-main"><div><h4>Забота,<br>которую<br><span>чувствуешь.</span></h4><p>Современная медицина с человеческим отношением.</p><span class="clinic-pill">Записаться на приём ↗</span></div><div class="clinic-person"><div class="clinic-hair"></div></div></div></div></div><div class="case-meta"><div><h3>Forma Health — клиника</h3><p>Сайт услуг · Запись · Команда специалистов</p></div><span class="case-link" aria-hidden="true">↗</span></div></article>
+          <article class="case-card reveal" style="--delay:110ms"><div class="case-visual art-commerce"><div class="commerce-window"><div class="commerce-nav"><span>SŌL OBJECTS</span><span>SHOP　 ABOUT　 BAG (0)</span></div><div class="commerce-content"><small>OBJECTS FOR SLOW LIVING</small><h4>Less,<br><em>but</em> better.</h4><p>Предметы, которые хочется оставить рядом надолго.</p></div><div class="product-bottle"></div><div class="commerce-disc"></div></div></div><div class="case-meta"><div><h3>SŌL — товары для дома</h3><p>Каталог · Карточки товаров · Корзина</p></div><span class="case-link" aria-hidden="true">↗</span></div></article>
+        </div>
+        <div class="case-footnote reveal"><span>Показаны демонстрационные концепции оформления.</span><a href="#contact" class="btn btn-outline">Хочу сайт в таком стиле <span class="arrow">↗</span></a></div>
+      </div>
+    </section>
+
+    <section class="admin-section section" id="admin">
+      <div class="container admin-layout">
+        <div class="admin-copy reveal"><span class="eyebrow">Ваш сайт — ваши правила</span><h2>Внутри так же<br><span class="accent">красиво.</span></h2><p class="lead">Сайт не должен требовать разработчика для каждой мелочи. Сделаем удобную админку, в которой легко разобраться с первого дня.</p>
+          <ul class="admin-benefits"><li><span class="check">✓</span><span>Редактируйте тексты, фото и блоки самостоятельно.</span></li><li><span class="check">✓</span><span>Добавляйте услуги, проекты и товары без лишних действий.</span></li><li><span class="check">✓</span><span>Смотрите заявки и держите важное под рукой.</span></li></ul>
+          <a class="btn btn-dark" href="#contact">Показать админку под мой проект <span class="arrow">↗</span></a>
+        </div>
+        <div class="reveal" style="--delay:120ms">
+          <div class="admin-demo">
+            <div class="admin-top"><div class="admin-brand"><span class="admin-brandmark">ф.</span><span>Панель управления</span></div><span class="admin-status">● Все изменения сохранены</span></div>
+            <div class="admin-body">
+              <aside class="admin-sidebar"><div class="admin-side-label">Рабочее пространство</div><button class="admin-tab active" data-tab="overview"><span class="tab-symbol">▦</span> Обзор</button><button class="admin-tab" data-tab="pages"><span class="tab-symbol">▤</span> Страницы</button><button class="admin-tab" data-tab="projects"><span class="tab-symbol">▧</span> Проекты</button><button class="admin-tab" data-tab="leads"><span class="tab-symbol">↳</span> Заявки <span style="margin-left:auto;background:var(--blue);color:white;border-radius:5px;padding:2px 5px;font-size:8px">4</span></button><button class="admin-tab" data-tab="settings"><span class="tab-symbol">⚙</span> Настройки</button></aside>
+              <div class="admin-main" id="adminMain" aria-live="polite">
+                <div class="admin-content"><div class="admin-heading"><div><h3>Добро пожаловать!</h3><p>Вот что происходит с вашим сайтом.</p></div><button class="admin-mini-btn">Сегодня⌄</button></div><div class="admin-stats"><div class="admin-stat"><span>Посетители</span><strong>2 481</strong><small>↗ 12,8%</small></div><div class="admin-stat"><span>Заявки</span><strong>86</strong><small>↗ 8,2%</small></div><div class="admin-stat"><span>Конверсия</span><strong>3,46%</strong><small>↗ 0,6%</small></div></div><div class="admin-panel"><div class="admin-panel-title"><span>Активность сайта</span><span style="color:var(--muted);font-weight:500">За 7 дней</span></div><div class="chart"><span class="chart-bar" style="height:38%"></span><span class="chart-bar" style="height:55%"></span><span class="chart-bar" style="height:46%"></span><span class="chart-bar" style="height:74%"></span><span class="chart-bar" style="height:61%"></span><span class="chart-bar" style="height:90%"></span><span class="chart-bar" style="height:69%"></span><span class="chart-bar" style="height:100%"></span><span class="chart-bar" style="height:78%"></span><span class="chart-bar" style="height:88%"></span></div><div class="chart-labels"><span>Пн</span><span>Вт</span><span>Ср</span><span>Чт</span><span>Пт</span><span>Сб</span><span>Вс</span></div></div><div class="admin-note"><span>✓</span> Вы можете менять контент в любой момент</div></div>
+              </div>
+            </div>
+          </div>
+          <p style="font-size:11px;color:var(--muted);margin:14px 0 0;text-align:center">Интерактивный макет — нажмите на разделы слева.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section process" id="process">
+      <div class="container">
+        <div class="section-head reveal"><div><span class="eyebrow">Понятный процесс</span><h2>От «есть идея»<br>до «<span style="color:var(--acid)">сайт готов</span>».</h2></div><p class="lead">Без хаоса, технического языка и бесконечных согласований. Вы понимаете, что происходит на каждом этапе.</p></div>
+        <div class="process-grid">
+          <article class="process-card reveal"><span class="process-line"></span><span class="process-num">ШАГ 01</span><h3>Знакомимся</h3><p>Обсуждаем задачи, аудиторию, конкурентов и то, каким должен быть результат.</p></article>
+          <article class="process-card reveal" style="--delay:90ms"><span class="process-line"></span><span class="process-num">ШАГ 02</span><h3>Проектируем</h3><p>Собираем структуру, сценарии пользователя и визуальную концепцию.</p></article>
+          <article class="process-card reveal" style="--delay:180ms"><span class="process-line"></span><span class="process-num">ШАГ 03</span><h3>Создаём</h3><p>Разрабатываем сайт, адаптируем под устройства и подключаем нужные функции.</p></article>
+          <article class="process-card reveal" style="--delay:270ms"><span class="process-line"></span><span class="process-num">ШАГ 04</span><h3>Запускаем</h3><p>Проверяем всё перед публикацией, передаём доступы и показываем, как управлять сайтом.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="pricing">
+      <div class="container">
+        <div class="section-head reveal"><div><span class="eyebrow">Форматы сотрудничества</span><h2>Под вашу задачу,<br><span class="accent">а не наоборот.</span></h2></div><p class="lead">Точный состав и стоимость определяем после знакомства с проектом. Ниже — ориентир по форматам.</p></div>
+        <div class="pricing-grid">
+          <article class="price-card reveal"><span class="price-label">Быстрый старт</span><h3>Лендинг</h3><p>Чтобы представить продукт, проверить гипотезу или собирать заявки.</p><div class="price">от 60 000 ₽</div><div class="price-detail">Срок — от 2 недель</div><ul class="price-features"><li>Структура и дизайн страницы</li><li>Адаптация под смартфоны</li><li>Форма заявки</li><li>Базовая SEO-подготовка</li></ul><a class="btn btn-outline" href="#contact" data-plan="Лендинг">Обсудить лендинг <span class="arrow">↗</span></a></article>
+          <article class="price-card featured reveal" style="--delay:100ms"><span class="price-label">Чаще выбирают</span><h3>Сайт компании</h3><p>Полноценное представление бренда, услуг, команды и кейсов.</p><div class="price">от 120 000 ₽</div><div class="price-detail">Срок — от 3–5 недель</div><ul class="price-features"><li>Индивидуальный дизайн</li><li>Несколько страниц</li><li>Удобная система управления</li><li>Интеграции и аналитика</li></ul><a class="btn" href="#contact" data-plan="Сайт компании">Обсудить сайт <span class="arrow">↗</span></a></article>
+          <article class="price-card reveal" style="--delay:200ms"><span class="price-label">Больше возможностей</span><h3>Интернет-магазин</h3><p>Каталог, карточки товаров и основа для онлайн-продаж.</p><div class="price">от 180 000 ₽</div><div class="price-detail">Срок — от 5–7 недель</div><ul class="price-features"><li>Каталог и карточки товаров</li><li>Корзина и формы заказа</li><li>Управление контентом</li><li>Подключение сервисов</li></ul><a class="btn btn-outline" href="#contact" data-plan="Интернет-магазин">Обсудить магазин <span class="arrow">↗</span></a></article>
+        </div>
+        <p class="reveal" style="font-size:11px;line-height:1.6;color:var(--muted);margin:22px 0 0">Стоимость и сроки указаны как пример для демонстрационного макета. Их можно заменить на ваши реальные условия.</p>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container faq-layout">
+        <div class="reveal"><span class="eyebrow">Частые вопросы</span><h2>Давайте<br>проясним.</h2><p class="lead" style="margin-top:20px">Всё важное — до старта работ, чтобы на каждом этапе было спокойно и понятно.</p></div>
+        <div class="faq-list reveal" style="--delay:100ms">
+          <div class="faq-item open"><button class="faq-question" aria-expanded="true">Что входит в сайт под ключ?<span class="faq-plus">+</span></button><div class="faq-answer"><div><p>Структура, дизайн, разработка, адаптация под мобильные устройства, подключение согласованных функций, проверка перед запуском и передача доступов. Точный состав фиксируем в начале проекта.</p></div></div></div>
+          <div class="faq-item"><button class="faq-question" aria-expanded="false">Смогу ли я менять сайт самостоятельно?<span class="faq-plus">+</span></button><div class="faq-answer"><div><p>Да. Предусматриваем удобный способ редактирования контента и показываем, как обновлять тексты, изображения, услуги или кейсы без программирования.</p></div></div></div>
+          <div class="faq-item"><button class="faq-question" aria-expanded="false">Сколько времени занимает разработка?<span class="faq-plus">+</span></button><div class="faq-answer"><div><p>Зависит от объёма и функциональности. Небольшой лендинг обычно занимает меньше времени, чем корпоративный сайт или магазин. Реальный график согласуем после обсуждения задачи.</p></div></div></div>
+          <div class="faq-item"><button class="faq-question" aria-expanded="false">Что нужно подготовить перед стартом?<span class="faq-plus">+</span></button><div class="faq-answer"><div><p>Достаточно рассказать о бизнесе, услуге и цели сайта. Поможем определить структуру, подготовим список нужных материалов и подскажем, что можно сделать вместе с нами.</p></div></div></div>
+          <div class="faq-item"><button class="faq-question" aria-expanded="false">Можно ли доработать сайт позже?<span class="faq-plus">+</span></button><div class="faq-answer"><div><p>Да. Можно начать с необходимого функционала, а затем добавлять новые разделы, интеграции или возможности по мере развития бизнеса.</p></div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container"><div class="contact-card reveal"><div class="contact-inner"><div><span class="eyebrow">Следующий шаг — за вами</span><h2>Пора сделать сайт, которым <span style="color:var(--acid)">гордятся.</span></h2><p class="lead">Расскажите в двух словах о задаче. Вернёмся с вопросами, предложим формат и объясним, с чего лучше начать.</p></div>
+        <form class="contact-form" id="contactForm"><div><label for="name">Как к вам обращаться</label><input id="name" name="name" placeholder="Ваше имя" required></div><div><label for="contactWay">Куда ответить</label><input id="contactWay" name="contactWay" placeholder="Telegram, email или телефон" required></div><div><label for="project">Что нужно сделать? (необязательно)</label><textarea id="project" name="project" placeholder="Например, сайт для студии интерьера"></textarea></div><div class="form-message" id="formMessage" role="status">Спасибо! Форма работает в режиме демонстрации. Для реальных заявок её нужно подключить к вашей почте или CRM.</div><button class="btn btn-dark" type="submit">Обсудить проект <span class="arrow">↗</span></button><p class="form-privacy">Нажимая кнопку, вы соглашаетесь на обработку указанных данных.</p></form>
+      </div></div></div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="container footer-row"><a class="brand" href="#top"><span class="brand-mark">ф.</span><span>форма<span style="color:var(--blue)">®</span></span></a><span>© 2026 · Сайты под ключ с вниманием к деталям.</span><div class="footer-links"><a href="#services">Услуги</a><a href="#cases">Кейсы</a><a href="#contact">Контакт</a><a href="#top">Наверх ↑</a></div></div></footer>
+</div>
+<script src="script.js" defer></script>
+</body>
 </html>

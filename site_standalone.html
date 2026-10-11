@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f6f6f2">
+<title>Сайты под ключ — студия «форма»</title>
+<style>
+:root {
+  color-scheme: light dark;
+  --bg: light-dark(#f6f6f2, #10110f);
+  --paper: light-dark(#ffffff, #191a17);
+  --paper-soft: light-dark(#efefe8, #20211e);
+  --ink: light-dark(#1a1b18, #f3f3ed);
+  --muted: light-dark(#72736b, #a3a49a);
+  --line: light-dark(rgba(26,27,24,.13), rgba(243,243,237,.14));
+  --acid: light-dark(#d8ff3f, #d8ff3f);
+  --blue: light-dark(#5a56f3, #8b87ff);
+  --shadow: 0 24px 80px rgba(18, 20, 15, .12);
+  --radius: 24px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; letter-spacing: -.025em; }
+button, input, textarea { font: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+a { color: inherit; text-decoration: none; }
+button { color: inherit; }
+.app-root { width: 100%; min-height: 100vh; background-color: var(--bg); color: var(--ink); overflow: clip; border-radius: 0; }
+.container { width: min(1180px, calc(100% - 48px)); margin-inline: auto; }
+.eyebrow { display: inline-flex; align-items: center; gap: 9px; text-transform: uppercase; font-size: 11px; font-weight: 750; letter-spacing: .12em; color: var(--muted); }
+.eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 4px color-mix(in srgb, var(--blue) 14%, transparent); }
+.section { padding: 112px 0; position: relative; }
+.section-head { display: flex; justify-content: space-between; align-items: end; gap: 28px; margin-bottom: 42px; }
+h1,h2,h3,p { margin-top: 0; }
+h1 { font-size: clamp(48px, 7.3vw, 91px); line-height: .96; letter-spacing: -.085em; font-weight: 650; max-width: 760px; margin: 25px 0 24px; }
+h2 { font-size: clamp(38px, 5.5vw, 66px); letter-spacing: -.075em; line-height: .98; font-weight: 620; margin: 17px 0 0; }
+h3 { letter-spacing: -.05em; line-height: 1.08; }
+.lead { font-size: clamp(16px, 1.8vw, 19px); color: var(--muted); line-height: 1.65; max-width: 500px; letter-spacing: -.025em; }
+.accent { position: relative; display: inline-block; z-index: 0; white-space: nowrap; }
+.accent::after { content: ""; position: absolute; z-index: -1; left: -3px; right: -4px; height: .33em; bottom: .02em; border-radius: 3px; background: var(--acid); transform: rotate(-1.4deg); }
+.btn { border: 1px solid transparent; border-radius: 999px; min-height: 52px; padding: 0 22px; display: inline-flex; justify-content: center; align-items: center; gap: 13px; font-size: 14px; font-weight: 700; cursor: pointer; transition: transform .25s ease, background .25s ease, color .25s ease, border-color .25s ease; }
+.btn:hover { transform: translateY(-3px); }
+.btn-dark { background: var(--ink); color: var(--bg); }
+.btn-dark:hover { background: var(--blue); color: white; }
+.btn-light { background: var(--acid); color: #181a10; }
+.btn-light:hover { background: #c7ef24; }
+.btn-outline { border-color: var(--line); background: transparent; }
+.btn-outline:hover { border-color: var(--ink); background: var(--paper); }
+.arrow { font-size: 18px; line-height: 1; transition: transform .25s ease; }
+.btn:hover .arrow { transform: translateX(3px); }
+/* Header */
+.site-header { position: sticky; top: 0; z-index: 50; background: color-mix(in srgb, var(--bg) 84%, transparent); backdrop-filter: blur(18px); border-bottom: 1px solid color-mix(in srgb, var(--line) 60%, transparent); }
+.nav { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 26px; }
+.brand { display: inline-flex; align-items: center; gap: 10px; font-size: 19px; font-weight: 800; letter-spacing: -.07em; white-space: nowrap; }
+.brand-mark { display: grid; place-items: center; width: 31px; height: 31px; border-radius: 10px; background: var(--acid); color: #15160f; font-size: 18px; transform: rotate(-7deg); font-weight: 900; }
+.nav-links { display: flex; align-items: center; gap: clamp(16px, 2.7vw, 34px); font-size: 13px; color: var(--muted); }
+.nav-links a { transition: color .2s ease; }
+.nav-links a:hover { color: var(--ink); }
+.nav .btn { min-height: 43px; padding-inline: 17px; font-size: 12px; }
+.menu-toggle { display: none; border: 1px solid var(--line); border-radius: 50%; width: 44px; height: 44px; background: transparent; cursor: pointer; font-size: 20px; }
+/* Hero */
+.hero { padding: 64px 0 54px; position: relative; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, .96fr) minmax(0, 1.04fr); gap: 38px; align-items: center; }
+.hero-copy { padding: 22px 0 32px; position: relative; z-index: 2; }
+.hero-copy .lead { max-width: 450px; margin-bottom: 31px; }
+.hero-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; }
+.hero-note { display: flex; align-items: center; gap: 12px; margin-top: 32px; color: var(--muted); font-size: 12px; }
+.avatar-stack { display: flex; padding-left: 6px; }
+.avatar { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; border: 2px solid var(--bg); margin-left: -6px; font-size: 11px; font-weight: 800; color: #20211b; }
+.avatar:nth-child(1) { background: #ffc5a6; } .avatar:nth-child(2) { background: #d2d0ff; } .avatar:nth-child(3) { background: #c5ed7a; }
+.hero-art { min-height: 520px; position: relative; display: flex; align-items: center; justify-content: center; isolation: isolate; }
+.hero-orbit { position: absolute; width: min(96%, 530px); aspect-ratio: 1; border: 1px solid var(--line); border-radius: 50%; transform: rotate(-18deg); }
+.hero-orbit::before,.hero-orbit::after { content:""; position:absolute; border:1px solid var(--line); border-radius:50%; inset: 11%; }
+.hero-orbit::after { inset: 23%; }
+.orbit-dot { position: absolute; width: 14px; height: 14px; border-radius: 50%; background: var(--blue); top: 14%; right: 22%; box-shadow: 0 0 0 8px color-mix(in srgb, var(--blue) 13%, transparent); }
+.browser { position: relative; z-index: 2; width: min(100%, 530px); border: 1px solid rgba(255,255,255,.7); border-radius: 16px; overflow: hidden; background: #f7f7f3; color: #1a1b18; box-shadow: 0 32px 90px rgba(26,28,20,.19); transform: rotate(-3deg); animation: float 7s ease-in-out infinite; }
+.browser-bar { height: 39px; border-bottom: 1px solid #e2e3dc; background: #fff; display:flex; align-items:center; gap:6px; padding: 0 14px; }
+.browser-bar i { width:7px; height:7px; border-radius:50%; background:#d8d9d2; }
+.browser-address { margin-left: auto; border-radius: 5px; padding: 4px 38px; background: #f2f2ee; color:#85867d; font-size:8px; letter-spacing:0; }
+.mock-site { padding: 23px 22px 20px; min-height: 365px; background: linear-gradient(135deg,#f9f5ec,#eeece1); }
+.mock-nav { display:flex; justify-content:space-between; align-items:center; font-size:8px; font-weight:800; letter-spacing:.06em; }
+.mock-logo { display:flex; align-items:center; gap:5px; font-size:10px; letter-spacing:-.04em; }
+.mock-logo span { display:block; background:#ed6546; width:11px; height:11px; border-radius:3px 3px 3px 0; transform:rotate(-12deg); }
+.mock-navlinks { display:flex; gap:13px; color:#77786f; font-size:7px; }
+.mock-hero { display:grid; grid-template-columns:1.1fr .9fr; align-items:center; gap:10px; padding-top:34px; }
+.mock-kicker { text-transform:uppercase; font-size:7px; letter-spacing:.15em; color:#9b7f64; font-weight:800; }
+.mock-title { font-size: clamp(23px,3.2vw,35px); font-family: Georgia,serif; font-weight:500; line-height:.98; letter-spacing:-.07em; margin:10px 0 12px; max-width:220px; }
+.mock-title em { color:#ed6546; font-weight:500; }
+.mock-desc { font-size:7px; line-height:1.6; max-width:150px; color:#73746e; }
+.mock-cta { margin-top:13px; background:#20211b; color:#fff; display:inline-flex; align-items:center; padding:8px 11px; gap:14px; border-radius:20px; font-size:7px; }
+.mock-photo { position:relative; height:194px; background:linear-gradient(145deg,#d4d6c7,#b9b7a4); border-radius:80px 80px 5px 5px; overflow:hidden; }
+.mock-photo::before { content:""; position:absolute; width:105px; height:138px; background:linear-gradient(110deg,#f0c2a0,#c88660); left:30%; top:20%; border-radius:50% 50% 17% 17%; transform:rotate(-9deg); }
+.mock-photo::after { content:""; position:absolute; width:170px; height:90px; background:#4c5546; border-radius:70% 70% 0 0; bottom:-31px; left:7%; transform:rotate(-12deg); }
+.mock-sun { position:absolute; width:76px; height:76px; background:#e8a86e; border-radius:50%; right:0; top:20px; }
+.mock-bottom { display:flex; gap:8px; margin-top:25px; }
+.mock-tile { height:45px; flex:1; padding:8px 10px; display:flex; flex-direction:column; justify-content:center; gap:5px; background:rgba(255,255,255,.65); border:1px solid rgba(40,40,30,.06); border-radius:6px; }
+.mock-tile b { font-family:Georgia,serif; font-size:11px; font-weight:500; }
+.mock-tile span { font-size:6px; color:#77786f; }
+.float-card { position:absolute; z-index:4; border:1px solid color-mix(in srgb, var(--line) 80%, white); background:var(--paper); border-radius:14px; padding:14px 16px; box-shadow:var(--shadow); animation: float 5.5s ease-in-out infinite; }
+.float-card small { color:var(--muted); font-size:10px; display:block; margin-bottom:5px; }
+.float-card strong { font-size:20px; letter-spacing:-.06em; }
+.float-card .up { color:#3c9e52; font-size:10px; margin-left:5px; }
+.stat-card { right:-1%; top:16%; transform:rotate(4deg); }
+.quote-card { left:-5%; bottom:14%; max-width:180px; transform:rotate(-5deg); animation-delay:-2s; }
+.quote-stars { color:#ed9d2b; letter-spacing:2px; font-size:11px; }
+.quote-card p { font-size:11px; line-height:1.45; margin:8px 0 0; }
+.hero-stamp { position:absolute; z-index:4; right:7%; bottom:4%; width:77px; height:77px; border-radius:50%; display:grid; place-items:center; text-align:center; background:var(--acid); color:#20211b; font-size:10px; line-height:1.2; font-weight:800; letter-spacing:-.03em; transform:rotate(12deg); }
+/* ticker */
+.ticker { border-block:1px solid var(--line); overflow:hidden; padding:19px 0; }
+.ticker-track { display:flex; align-items:center; width:max-content; gap:32px; animation: ticker 34s linear infinite; }
+.ticker-item { display:flex; align-items:center; gap:32px; font-size:11px; font-weight:750; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); white-space:nowrap; }
+.ticker-item::after { content:"✳"; color:var(--blue); font-size:16px; }
+/* Services */
+.services-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.service-card { padding:28px; min-height:260px; border-radius:var(--radius); background:var(--paper); border:1px solid var(--line); display:flex; flex-direction:column; justify-content:space-between; transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease; }
+.service-card:hover { transform:translateY(-7px); box-shadow:var(--shadow); border-color:color-mix(in srgb,var(--blue) 38%,var(--line)); }
+.service-index { display:flex; justify-content:space-between; color:var(--muted); font-size:11px; font-weight:750; letter-spacing:.07em; }
+.service-glyph { width:56px; height:56px; position:relative; border:1px solid var(--line); border-radius:17px; display:grid; place-items:center; overflow:hidden; margin-top:20px; }
+.glyph-layout { width:28px; height:28px; border:1.5px solid currentColor; border-radius:5px; position:relative; }
+.glyph-layout::before { content:""; position:absolute; left:0; top:7px; width:100%; border-top:1.5px solid currentColor; }
+.glyph-layout::after { content:""; position:absolute; left:7px; top:8px; height:18px; border-left:1.5px solid currentColor; }
+.glyph-spark { font-size:30px; color:var(--blue); }
+.glyph-code { font-family:ui-monospace,monospace; font-size:17px; font-weight:800; letter-spacing:-.12em; }
+.service-card h3 { font-size:25px; margin:22px 0 9px; }
+.service-card p { font-size:13px; line-height:1.6; color:var(--muted); margin:0; max-width:310px; }
+/* Cases */
+.cases { background:var(--paper-soft); }
+.cases-topline { display:flex; align-items:center; justify-content:space-between; gap:20px; margin-bottom:40px; }
+.filter-note { font-size:12px; color:var(--muted); }
+.case-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
+.case-card { min-width:0; }
+.case-visual { overflow:hidden; border-radius:19px; background:#ddd; height:clamp(260px,35vw,415px); position:relative; isolation:isolate; transition:transform .4s ease; }
+.case-card:hover .case-visual { transform:translateY(-4px); }
+.case-meta { display:flex; justify-content:space-between; align-items:flex-start; gap:20px; padding:19px 2px 3px; }
+.case-meta h3 { font-size:22px; margin:0 0 7px; }
+.case-meta p { color:var(--muted); font-size:12px; margin:0; }
+.case-type { padding:8px 11px; border:1px solid var(--line); border-radius:30px; font-size:10px; white-space:nowrap; color:var(--muted); }
+.case-link { width:40px; height:40px; display:grid; place-items:center; border:1px solid var(--line); border-radius:50%; background:var(--paper); font-size:20px; transition:transform .25s, background .25s; flex-shrink:0; }
+.case-card:hover .case-link { transform:rotate(45deg); background:var(--acid); color:#191a12; }
+/* case artwork 1 */
+.art-botanica { background:#e7e6dc; color:#263b2d; }
+.botanica-window { position:absolute; inset:6% 7%; background:#f5f2e8; overflow:hidden; box-shadow:0 18px 45px #29372820; }
+.botanica-nav { display:flex; justify-content:space-between; padding:17px 19px; align-items:center; font-size:8px; letter-spacing:.1em; font-weight:800; }
+.botanica-logo { font:italic 17px Georgia,serif; letter-spacing:-.07em; }
+.botanica-content { padding:7% 8%; position:relative; z-index:2; }
+.botanica-content small { text-transform:uppercase; letter-spacing:.2em; font-size:7px; }
+.botanica-content h4 { font:500 clamp(27px,4vw,43px)/.96 Georgia,serif; letter-spacing:-.07em; margin:12px 0; max-width:210px; }
+.botanica-content p { font:9px/1.4 Georgia,serif; max-width:140px; color:#667267; }
+.botanica-leaf { position:absolute; width:48%; height:91%; right:-2%; bottom:-19%; background:#71846a; border-radius:90% 0 90% 0; transform:rotate(-25deg); }
+.botanica-leaf::before { content:""; position:absolute; width:60%; height:70%; left:-35%; top:8%; background:#b8c3a5; border-radius:90% 0 90% 0; transform:rotate(-27deg); }
+.botanica-leaf::after { content:""; position:absolute; width:2px; height:95%; background:#e6e6d6; left:45%; top:1%; transform:rotate(20deg); }
+.botanica-label { position:absolute; z-index:3; right:12%; bottom:12%; border:1px solid #f5f2e8; border-radius:50%; width:78px; height:78px; display:grid; place-items:center; text-align:center; font:italic 11px Georgia,serif; }
+/* case 2 */
+.art-atelier { background:#b7b8ef; color:#29234e; }
+.atelier-window { position:absolute; inset:6% 7%; background:#e8e8ff; overflow:hidden; }
+.atelier-nav { padding:15px 18px; display:flex; justify-content:space-between; font-size:8px; text-transform:uppercase; letter-spacing:.12em; font-weight:800; }
+.atelier-content { position:relative; z-index:2; padding:8% 8%; }
+.atelier-content h4 { font-size:clamp(38px,5.5vw,66px); line-height:.83; letter-spacing:-.1em; margin:8px 0 16px; font-weight:850; }
+.atelier-content h4 span { color:#6b5de7; }
+.atelier-content p { font-size:8px; max-width:130px; line-height:1.55; }
+.atelier-button { display:inline-block; padding:9px 13px; border-radius:30px; background:#29234e; color:white; font-size:7px; margin-top:9px; }
+.atelier-orb { position:absolute; width:54%; aspect-ratio:1; border-radius:50%; background:linear-gradient(145deg,#9388ff,#6252d5); right:-6%; bottom:-20%; box-shadow:inset -25px -23px 0 rgba(36,24,118,.13); }
+.atelier-orb::after { content:""; position:absolute; width:40%; height:125%; background:#ffa0bd; right:3%; top:-15%; border-radius:50%; transform:rotate(25deg); mix-blend-mode:screen; }
+.atelier-flower { position:absolute; z-index:1; right:18%; top:23%; width:70px; height:70px; border-radius:50%; border:18px solid #f5a3cb; opacity:.9; }
+/* case 3 */
+.art-clinic { background:#d1e5dd; color:#1f5349; }
+.clinic-window { position:absolute; inset:6% 7%; background:#f4f8f3; overflow:hidden; }
+.clinic-nav { display:flex; align-items:center; justify-content:space-between; padding:14px 18px; font-size:7px; }
+.clinic-logo { display:flex; align-items:center; gap:6px; font-weight:850; font-size:10px; }
+.clinic-cross { width:16px; height:16px; background:#b7dcce; border-radius:5px; display:grid; place-items:center; font-size:16px; }
+.clinic-main { display:grid; grid-template-columns:1.05fr .95fr; gap:5px; align-items:center; padding:7% 8%; }
+.clinic-main h4 { font-size:clamp(23px,3.2vw,39px); line-height:.96; letter-spacing:-.075em; margin:0 0 12px; }
+.clinic-main h4 span { color:#65a894; }
+.clinic-main p { font-size:7px; line-height:1.5; max-width:125px; }
+.clinic-pill { display:inline-block; background:#1f5349; color:white; padding:8px 10px; border-radius:4px; font-size:7px; margin-top:5px; }
+.clinic-person { height:186px; background:#c1ded2; position:relative; border-radius:90px 90px 7px 7px; overflow:hidden; }
+.clinic-person::before { content:""; position:absolute; left:27%; top:15%; width:48%; height:58%; border-radius:45% 45% 42% 42%; background:#c98d6c; box-shadow:inset 9px 5px 0 #ddaa8b; }
+.clinic-person::after { content:""; position:absolute; bottom:-18%; left:8%; width:88%; height:60%; background:#fff; border-radius:50% 50% 0 0; border-top:9px solid #438573; }
+.clinic-hair { position:absolute; z-index:2; width:54%; height:30%; left:24%; top:9%; border-radius:50% 50% 10% 10%; background:#3b4d40; }
+/* case 4 */
+.art-commerce { background:#f1d5c4; color:#442c25; }
+.commerce-window { position:absolute; inset:6% 7%; background:#fcf0e7; overflow:hidden; }
+.commerce-nav { padding:15px 17px; display:flex; justify-content:space-between; font-size:8px; font-weight:850; letter-spacing:.04em; }
+.commerce-content { padding:7% 8%; position:relative; z-index:2; }
+.commerce-content small { font-size:7px; letter-spacing:.15em; }
+.commerce-content h4 { font-size:clamp(29px,4.4vw,52px); font-weight:850; line-height:.84; letter-spacing:-.09em; margin:10px 0; }
+.commerce-content h4 em { font-family:Georgia,serif; font-weight:400; }
+.commerce-content p { font-size:8px; max-width:130px; line-height:1.5; }
+.product-bottle { position:absolute; right:13%; bottom:7%; width:24%; height:48%; background:linear-gradient(90deg,#ae5f40,#d98f6b 40%,#b96d51); border-radius:15px 15px 10px 10px; box-shadow:15px 13px 0 #623a2b20; transform:rotate(7deg); }
+.product-bottle::before { content:""; position:absolute; width:40%; height:15%; top:-11%; left:30%; border-radius:4px 4px 0 0; background:#6b473d; }
+.product-bottle::after { content:"SŌL"; position:absolute; top:40%; left:0; width:100%; text-align:center; font:italic 13px Georgia,serif; color:#ffe6d4; }
+.commerce-disc { position:absolute; width:64%; aspect-ratio:1; right:-10%; bottom:-35%; border:1px solid #ba8066; border-radius:50%; }
+.case-footnote { display:flex; align-items:center; justify-content:space-between; gap:18px; margin-top:30px; padding-top:24px; border-top:1px solid var(--line); color:var(--muted); font-size:13px; }
+/* Admin */
+.admin-section { padding:122px 0; }
+.admin-layout { display:grid; grid-template-columns:.74fr 1.26fr; gap:60px; align-items:center; }
+.admin-copy .lead { margin-top:23px; }
+.admin-benefits { list-style:none; padding:0; margin:28px 0 31px; display:grid; gap:16px; }
+.admin-benefits li { display:flex; align-items:flex-start; gap:12px; font-size:14px; }
+.check { width:23px; height:23px; border-radius:50%; background:var(--acid); color:#20211b; display:grid; place-items:center; font-size:12px; flex-shrink:0; }
+.admin-demo { border:1px solid var(--line); background:var(--paper); border-radius:20px; overflow:hidden; box-shadow:var(--shadow); min-width:0; transform:perspective(1200px) rotateY(-3deg); transition:transform .45s ease; }
+.admin-demo:hover { transform:perspective(1200px) rotateY(0); }
+.admin-top { padding:16px 18px; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--line); gap:16px; }
+.admin-brand { display:flex; gap:9px; align-items:center; font-size:12px; font-weight:800; }
+.admin-brandmark { width:28px; height:28px; display:grid; place-items:center; border-radius:9px; background:var(--blue); color:white; font-size:13px; }
+.admin-status { font-size:10px; padding:7px 9px; color:#27844c; background:#dff5e5; border-radius:30px; white-space:nowrap; }
+.admin-body { display:grid; grid-template-columns:145px minmax(0,1fr); min-height:345px; }
+.admin-sidebar { padding:21px 12px; background:color-mix(in srgb,var(--paper-soft) 70%, transparent); border-right:1px solid var(--line); }
+.admin-side-label { text-transform:uppercase; letter-spacing:.12em; font-size:8px; color:var(--muted); padding:0 10px; margin-bottom:13px; }
+.admin-tab { width:100%; display:flex; align-items:center; gap:9px; border:0; cursor:pointer; text-align:left; border-radius:8px; background:transparent; padding:10px; margin-bottom:4px; font-size:10px; color:var(--muted); transition:background .2s,color .2s; }
+.admin-tab:hover { background:var(--paper); color:var(--ink); }
+.admin-tab.active { background:var(--acid); color:#191a12; font-weight:800; }
+.tab-symbol { font-size:13px; width:14px; text-align:center; }
+.admin-main { padding:23px; min-width:0; }
+.admin-heading { display:flex; align-items:flex-start; justify-content:space-between; gap:14px; margin-bottom:20px; }
+.admin-heading h3 { font-size:20px; margin:0 0 5px; }
+.admin-heading p { font-size:10px; color:var(--muted); margin:0; }
+.admin-mini-btn { border:1px solid var(--line); background:transparent; border-radius:7px; padding:8px 10px; font-size:9px; white-space:nowrap; }
+.admin-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:15px; }
+.admin-stat { border:1px solid var(--line); border-radius:10px; padding:12px; min-width:0; }
+.admin-stat span { display:block; font-size:9px; color:var(--muted); margin-bottom:8px; }
+.admin-stat strong { font-size:clamp(15px,2vw,22px); letter-spacing:-.06em; display:block; }
+.admin-stat small { color:#2d9b5b; font-size:9px; }
+.admin-panel { border:1px solid var(--line); border-radius:10px; padding:14px; }
+.admin-panel-title { font-size:10px; font-weight:800; margin-bottom:15px; display:flex; justify-content:space-between; gap:8px; }
+.chart { height:95px; display:flex; gap:7px; align-items:end; border-bottom:1px solid var(--line); padding:0 4px; }
+.chart-bar { flex:1; border-radius:4px 4px 0 0; background:linear-gradient(180deg,var(--blue),color-mix(in srgb,var(--blue) 35%,var(--paper))); min-width:5px; transform-origin:bottom; animation:grow .9s ease both; }
+.chart-labels { display:flex; justify-content:space-between; font-size:8px; color:var(--muted); padding-top:8px; }
+.admin-list { display:grid; gap:9px; }
+.admin-row { display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:center; gap:10px; border-bottom:1px solid var(--line); padding-bottom:9px; font-size:10px; }
+.admin-row:last-child { border:0; padding-bottom:0; }
+.admin-row span { color:var(--muted); }
+.admin-row b { font-weight:750; text-align:right; }
+.admin-content { animation:contentIn .3s ease both; }
+.admin-note { display:flex; gap:9px; align-items:center; margin-top:13px; color:var(--muted); font-size:10px; }
+.admin-note span { background:var(--acid); color:#20211b; width:21px;height:21px; border-radius:50%; display:grid;place-items:center; flex-shrink:0; }
+/* Process */
+.process { background:var(--ink); color:var(--bg); }
+.process .eyebrow { color:color-mix(in srgb,var(--bg) 60%,transparent); }
+.process .eyebrow::before { background:var(--acid); box-shadow:0 0 0 4px #d8ff3f20; }
+.process .section-head .lead { color:color-mix(in srgb,var(--bg) 62%,transparent); }
+.process-grid { display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid color-mix(in srgb,var(--bg) 18%,transparent); margin-top:58px; }
+.process-card { padding:24px 24px 8px 0; min-height:220px; position:relative; }
+.process-card + .process-card { padding-left:21px; border-left:1px solid color-mix(in srgb,var(--bg) 18%,transparent); }
+.process-num { font-size:11px; color:var(--acid); letter-spacing:.1em; font-weight:800; }
+.process-card h3 { font-size:23px; margin:50px 0 11px; }
+.process-card p { font-size:12px; line-height:1.65; color:color-mix(in srgb,var(--bg) 62%,transparent); max-width:220px; }
+.process-line { position:absolute; top:-4px; left:0; width:7px; height:7px; border-radius:50%; background:var(--acid); }
+.process-card + .process-card .process-line { left:21px; }
+/* pricing */
+.pricing-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; align-items:stretch; }
+.price-card { background:var(--paper); border:1px solid var(--line); border-radius:22px; padding:27px; display:flex; flex-direction:column; min-height:390px; transition:transform .3s ease,box-shadow .3s ease; }
+.price-card:hover { transform:translateY(-5px); box-shadow:var(--shadow); }
+.price-card.featured { background:var(--acid); color:#1b1c13; border-color:transparent; }
+.price-label { font-size:10px; text-transform:uppercase; letter-spacing:.13em; font-weight:800; opacity:.7; }
+.price-card h3 { font-size:24px; margin:18px 0 10px; }
+.price-card p { font-size:12px; line-height:1.6; color:var(--muted); min-height:39px; }
+.price-card.featured p,.price-card.featured .price-detail { color:#484b36; }
+.price { font-size:34px; letter-spacing:-.08em; font-weight:700; margin:20px 0 4px; }
+.price small { font-size:12px; letter-spacing:-.02em; font-weight:500; }
+.price-detail { font-size:11px; color:var(--muted); margin-bottom:24px; }
+.price-features { list-style:none; padding:18px 0 23px; margin:0 0 auto; border-top:1px solid var(--line); display:grid; gap:12px; font-size:12px; }
+.price-card.featured .price-features { border-color:#b4d12b; }
+.price-features li::before { content:"↗"; margin-right:9px; font-weight:800; }
+.price-card .btn { width:100%; margin-top:22px; }
+.price-card.featured .btn { background:#20211b; color:white; }
+.price-card.featured .btn:hover { background:#454739; }
+/* FAQ */
+.faq-layout { display:grid; grid-template-columns:.75fr 1.25fr; gap:70px; align-items:start; }
+.faq-list { border-top:1px solid var(--line); }
+.faq-item { border-bottom:1px solid var(--line); }
+.faq-question { display:flex; gap:20px; justify-content:space-between; align-items:center; width:100%; padding:23px 0; border:0; background:transparent; cursor:pointer; text-align:left; font-size:17px; font-weight:650; letter-spacing:-.04em; }
+.faq-plus { flex-shrink:0; width:28px; height:28px; border:1px solid var(--line); border-radius:50%; display:grid; place-items:center; transition:transform .25s, background .25s; font-size:17px; }
+.faq-answer { display:grid; grid-template-rows:0fr; transition:grid-template-rows .3s ease; }
+.faq-answer > div { overflow:hidden; }
+.faq-answer p { padding:0 38px 0 0; font-size:13px; line-height:1.7; color:var(--muted); margin:0; transition:padding .3s; }
+.faq-item.open .faq-answer { grid-template-rows:1fr; }
+.faq-item.open .faq-answer p { padding-bottom:22px; }
+.faq-item.open .faq-plus { transform:rotate(45deg); background:var(--acid); color:#1b1c13; border-color:transparent; }
+/* Contact */
+.contact { padding:70px 0 28px; }
+.contact-card { border-radius:28px; background:var(--blue); color:#fff; padding:clamp(30px,6vw,76px); position:relative; overflow:hidden; isolation:isolate; }
+.contact-card::before { content:""; width:410px; height:410px; border:1px solid #ffffff38; border-radius:50%; position:absolute; right:-70px; top:-170px; z-index:-1; }
+.contact-card::after { content:""; width:300px; height:300px; border:1px solid #ffffff38; border-radius:50%; position:absolute; right:-20px; top:-110px; z-index:-1; }
+.contact-inner { display:grid; grid-template-columns:1fr .65fr; gap:50px; align-items:end; }
+.contact-card .eyebrow { color:#dfddff; }
+.contact-card .eyebrow::before { background:var(--acid); box-shadow:0 0 0 4px #d8ff3f22; }
+.contact-card h2 { max-width:650px; margin:18px 0; }
+.contact-card .lead { color:#e0deff; max-width:490px; font-size:15px; }
+.contact-form { background:#fff; color:#1a1b18; border-radius:18px; padding:22px; display:grid; gap:12px; box-shadow:0 20px 50px #2a267044; }
+.contact-form label { display:block; font-size:10px; font-weight:800; color:#73736a; margin-bottom:7px; }
+.contact-form input,.contact-form textarea { width:100%; background:#f6f6f1; border:1px solid #e3e3dc; border-radius:8px; padding:12px 13px; outline:none; font-size:13px; color:#1a1b18; transition:border .2s,box-shadow .2s; }
+.contact-form input:focus,.contact-form textarea:focus { border-color:#5a56f3; box-shadow:0 0 0 3px #5a56f31b; }
+.contact-form textarea { resize:vertical; min-height:74px; }
+.contact-form .btn { width:100%; margin-top:3px; }
+.form-privacy { color:#86867e; font-size:9px; text-align:center; line-height:1.5; margin:0; }
+.form-message { display:none; padding:11px 12px; border-radius:8px; background:#e2f8e8; color:#24683c; font-size:12px; line-height:1.45; }
+.form-message.show { display:block; animation:contentIn .3s ease both; }
+.footer { padding:28px 0 34px; }
+.footer-row { display:flex; align-items:center; justify-content:space-between; gap:20px; padding-top:25px; border-top:1px solid var(--line); color:var(--muted); font-size:11px; }
+.footer-links { display:flex; gap:20px; }
+.footer-links a:hover { color:var(--ink); }
+/* animation system */
+.reveal { opacity:0; transform:translateY(24px); transition:opacity .75s cubic-bezier(.2,.7,.2,1),transform .75s cubic-bezier(.2,.7,.2,1); transition-delay:var(--delay,0ms); }
+.reveal.visible { opacity:1; transform:translateY(0); }
+@keyframes float { 0%,100% { translate:0 0; } 50% { translate:0 -10px; } }
+@keyframes ticker { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+@keyframes grow { from { transform:scaleY(.08); opacity:.4; } to { transform:scaleY(1); opacity:1; } }
+@keyframes contentIn { from { opacity:0; transform:translateY(7px); } to { opacity:1; transform:translateY(0); } }
+@media (prefers-reduced-motion: reduce) { *,*::before,*::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; scroll-behavior:auto !important; transition-duration:.01ms !important; } .reveal { opacity:1; transform:none; } }
+@media (max-width: 900px) {
+  .container { width:min(100% - 36px,700px); }
+  .nav-links { gap:15px; }
+  .nav-links a { font-size:12px; }
+  .hero-grid { grid-template-columns:1fr; gap:10px; }
+  .hero-copy { padding:20px 0 0; }
+  .hero-art { min-height:470px; max-width:650px; width:100%; margin:0 auto; }
+  .browser { max-width:500px; }
+  .hero { padding-top:38px; }
+  .section { padding:85px 0; }
+  .admin-layout { grid-template-columns:1fr; gap:36px; }
+  .admin-copy { max-width:600px; }
+  .admin-demo { transform:none; }
+  .process-grid { grid-template-columns:repeat(2,1fr); }
+  .process-card:nth-child(3) { border-left:0; padding-left:0; }
+  .process-card:nth-child(3) .process-line { left:0; }
+  .contact-inner { grid-template-columns:1fr .82fr; gap:25px; }
+  .faq-layout { gap:35px; }
+}
+@media (max-width: 650px) {
+  .container { width:calc(100% - 32px); }
+  .nav { min-height:68px; }
+  .menu-toggle { display:grid; place-items:center; }
+  .nav > .btn { display:none; }
+  .nav-links { position:absolute; top:68px; left:0; right:0; background:var(--bg); border-bottom:1px solid var(--line); padding:18px 22px 22px; display:none; flex-direction:column; align-items:stretch; gap:0; }
+  .nav-links.open { display:flex; animation:contentIn .22s ease both; }
+  .nav-links a { padding:13px 0; border-bottom:1px solid var(--line); font-size:14px; }
+  .nav-links a:last-child { border-bottom:0; }
+  h1 { font-size:clamp(46px,14vw,68px); }
+  h2 { font-size:clamp(38px,11vw,54px); }
+  .hero { padding:28px 0 32px; }
+  .hero-art { min-height:360px; margin-top:8px; }
+  .browser { width:90%; border-radius:11px; }
+  .browser-bar { height:28px; }
+  .mock-site { min-height:280px; padding:16px 14px; }
+  .mock-hero { padding-top:23px; }
+  .mock-photo { height:145px; }
+  .mock-title { font-size:clamp(22px,7vw,31px); }
+  .mock-bottom { margin-top:17px; }
+  .mock-tile { height:36px; padding:5px 6px; }
+  .mock-tile b { font-size:9px; }
+  .stat-card { right:-1%; top:7%; padding:10px 12px; }
+  .stat-card strong { font-size:17px; }
+  .quote-card { left:-1%; bottom:7%; max-width:150px; padding:11px 12px; }
+  .quote-card p { font-size:10px; }
+  .hero-stamp { width:62px; height:62px; font-size:8px; right:4%; bottom:1%; }
+  .hero-orbit { width:96%; }
+  .section { padding:72px 0; }
+  .section-head { align-items:flex-start; flex-direction:column; margin-bottom:30px; gap:15px; }
+  .section-head .lead { font-size:15px; }
+  .services-grid { grid-template-columns:1fr; gap:10px; }
+  .service-card { min-height:220px; padding:24px; }
+  .service-card h3 { font-size:23px; }
+  .case-grid { grid-template-columns:1fr; gap:28px; }
+  .case-visual { height:clamp(275px,82vw,370px); }
+  .case-meta h3 { font-size:19px; }
+  .case-footnote { align-items:flex-start; flex-direction:column; font-size:12px; }
+  .admin-body { grid-template-columns:105px minmax(0,1fr); min-height:325px; }
+  .admin-sidebar { padding:14px 7px; }
+  .admin-tab { font-size:9px; padding:9px 7px; gap:5px; }
+  .admin-side-label { font-size:7px; padding:0 7px; }
+  .admin-main { padding:14px 10px; }
+  .admin-top { padding:12px; }
+  .admin-brand { font-size:10px; }
+  .admin-heading h3 { font-size:17px; }
+  .admin-heading p { font-size:9px; }
+  .admin-mini-btn { font-size:8px; padding:7px; }
+  .admin-stats { gap:5px; }
+  .admin-stat { padding:8px 6px; }
+  .admin-stat span { font-size:8px; }
+  .admin-stat strong { font-size:16px; }
+  .admin-stat small { font-size:8px; }
+  .admin-panel { padding:10px; }
+  .chart { height:78px; gap:4px; }
+  .admin-row { font-size:9px; }
+  .admin-note { align-items:flex-start; font-size:9px; }
+  .process-grid { margin-top:35px; }
+  .process-card { min-height:205px; padding:20px 14px 8px 0; }
+  .process-card + .process-card { padding-left:14px; }
+  .process-card h3 { font-size:20px; margin-top:34px; }
+  .process-card p { font-size:11px; }
+  .process-card + .process-card .process-line { left:14px; }
+  .pricing-grid { grid-template-columns:1fr; gap:11px; }
+  .price-card { min-height:auto; padding:24px; }
+  .price-card p { min-height:0; }
+  .price { margin-top:13px; }
+  .faq-layout { grid-template-columns:1fr; gap:28px; }
+  .faq-question { font-size:15px; padding:20px 0; }
+  .contact { padding:40px 0 15px; }
+  .contact-card { padding:28px 20px 20px; border-radius:22px; }
+  .contact-inner { grid-template-columns:1fr; gap:25px; }
+  .contact-card .lead { font-size:14px; }
+  .contact-form { padding:17px; }
+  .footer-row { flex-direction:column; align-items:flex-start; gap:13px; }
+  .footer-links { flex-wrap:wrap; gap:14px; }
+}
+</style>
+</head>
+<body>
+<div class="app-root" id="top">
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="Форма — на главную"><span class="brand-mark">ф.</span><span>форма<span style="color:var(--blue)">®</span></span></a>
+      <nav class="nav-links" id="navLinks" aria-label="Основная навигация">
+        <a href="#services">Что делаем</a><a href="#cases">Кейсы</a><a href="#admin">Админка</a><a href="#process">Как работаем</a><a href="#pricing">Стоимость</a>
+      </nav>
+      <a class="btn btn-dark" href="#contact">Обсудить проект <span class="arrow">↗</span></a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Открыть меню" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <span class="eyebrow">Дизайн · разработка · запуск</span>
+          <h1>Сайты, которые<br>работают на <span class="accent">ваш бизнес.</span></h1>
+          <p class="lead">Продумываем, создаём и запускаем сайты под ключ. Красивые снаружи, понятные внутри и готовые превращать посетителей в клиентов.</p>
+          <div class="hero-actions"><a class="btn btn-dark" href="#contact">Обсудить мой сайт <span class="arrow">↗</span></a><a class="btn btn-outline" href="#cases">Смотреть кейсы <span class="arrow">↓</span></a></div>
+          <div class="hero-note"><div class="avatar-stack"><span class="avatar">М</span><span class="avatar">А</span><span class="avatar">К</span></div><span>От первого эскиза до готового сайта<br><strong style="color:var(--ink);font-weight:700">в одной команде</strong></span></div>
+        </div>
+        <div class="hero-art reveal" style="--delay:150ms" aria-label="Пример современного сайта в браузере">
+          <div class="hero-orbit"><span class="orbit-dot"></span></div>
+          <div class="browser">
+            <div class="browser-bar"><i></i><i></i><i></i><div class="browser-address">your-brand.ru</div></div>
+            <div class="mock-site">
+              <div class="mock-nav"><div class="mock-logo"><span></span> BONJOUR STUDIO</div><div class="mock-navlinks"><span>О нас</span><span>Услуги</span><span>Контакты</span></div></div>
+              <div class="mock-hero"><div><div class="mock-kicker">пространство для себя</div><div class="mock-title">Красота<br>в <em>простых</em><br>вещах.</div><div class="mock-desc">Создаём моменты, которые хочется сохранить.</div><div class="mock-cta">Открыть для себя <b>↗</b></div></div><div class="mock-photo"><div class="mock-sun"></div></div></div>
+              <div class="mock-bottom"><div class="mock-tile"><b>01 / Концепция</b><span>Смысл в каждой детали</span></div><div class="mock-tile"><b>02 / Впечатление</b><span>Запоминается надолго</span></div><div class="mock-tile"><b>03 / Результат</b><span>Больше поводов выбрать нас</span></div></div>
+            </div>
+          </div>
+          <div class="float-card stat-card"><small>Конверсия сайта</small><strong>+38,6%</strong><span class="up">↗ рост</span></div>
+          <div class="float-card quote-card"><div class="quote-stars">★★★★★</div><p>«Наконец сайт, который полностью ощущается как наш бренд»</p></div>
+          <div class="hero-stamp">ИДЕЯ<br>→ САЙТ<br>→ РЕЗУЛЬТАТ</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="ticker" aria-label="Всё для запуска вашего сайта"><div class="ticker-track" aria-hidden="true">
+      <div class="ticker-item">Стратегия и смысл</div><div class="ticker-item">Дизайн с характером</div><div class="ticker-item">Разработка под ключ</div><div class="ticker-item">Удобная админка</div><div class="ticker-item">Поддержка после запуска</div><div class="ticker-item">Стратегия и смысл</div><div class="ticker-item">Дизайн с характером</div><div class="ticker-item">Разработка под ключ</div><div class="ticker-item">Удобная админка</div><div class="ticker-item">Поддержка после запуска</div>
+    </div></div>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-head reveal"><div><span class="eyebrow">Полный цикл</span><h2>Не просто сайт.<br><span class="accent">Рабочий инструмент.</span></h2></div><p class="lead">Берём на себя весь путь — от первых вопросов о вашем бизнесе до публикации и настройки.</p></div>
+        <div class="services-grid">
+          <article class="service-card reveal" style="--delay:0ms"><div><div class="service-index"><span>01 / СМЫСЛ</span><span>→</span></div><div class="service-glyph"><div class="glyph-layout"></div></div></div><div><h3>Структура и дизайн</h3><p>Изучаем аудиторию, собираем логику страницы и создаём визуал, который помогает выбрать именно вас.</p></div></article>
+          <article class="service-card reveal" style="--delay:110ms"><div><div class="service-index"><span>02 / РАЗРАБОТКА</span><span>→</span></div><div class="service-glyph"><span class="glyph-spark">✳</span></div></div><div><h3>Сборка под ключ</h3><p>Адаптивная версия для телефона и компьютера, формы, интеграции и техническая подготовка к запуску.</p></div></article>
+          <article class="service-card reveal" style="--delay:220ms"><div><div class="service-index"><span>03 / СВОБОДА</span><span>→</span></div><div class="service-glyph"><span class="glyph-code">{ }</span></div></div><div><h3>Управление без кода</h3><p>Добавляйте услуги, меняйте тексты и обновляйте кейсы самостоятельно — через понятную админку.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cases" id="cases">
+      <div class="container">
+        <div class="section-head reveal"><div><span class="eyebrow">Избранные проекты</span><h2>Каждый сайт —<br>свой <span class="accent">характер.</span></h2></div><p class="lead">Дизайн начинается с вашей задачи. Не делаем одинаково — ищем визуальный язык, который подходит именно бренду.</p></div>
+        <div class="case-grid">
+          <article class="case-card reveal" style="--delay:0ms"><div class="case-visual art-botanica"><div class="botanica-window"><div class="botanica-nav"><span class="botanica-logo">botanica.</span><span>КОЛЛЕКЦИИ　 О НАС　 ↗</span></div><div class="botanica-content"><small>ритуалы на каждый день</small><h4>Ближе к<br>природе.</h4><p>Тихая эстетика. Чистые составы. Ваше время для себя.</p></div><div class="botanica-leaf"></div><div class="botanica-label">Made with<br>care ✳</div></div></div><div class="case-meta"><div><h3>Botanica — косметика</h3><p>Интернет-магазин · Айдентика · Каталог</p></div><span class="case-link" aria-hidden="true">↗</span></div></article>
+          <article class="case-card reveal" style="--delay:110ms"><div class="case-visual art-atelier"><div class="atelier-window"><div class="atelier-nav"><span>ATELIER / CREATIVE STUDIO</span><span>МЕНЮ +</span></div><div class="atelier-content"><h4>MAKE<br>IT <span>MATTER.</span></h4><p>Смелые идеи для брендов, которые не хотят быть как все.</p><span class="atelier-button">НАШИ ПРОЕКТЫ ↗</span></div><div class="atelier-orb"></div><div class="atelier-flower"></div></div></div><div class="case-meta"><div><h3>Atelier — креативная студия</h3><p>Имиджевый сайт · Анимации · Портфолио</p></div><span class="case-link" aria-hidden="true">↗</span></div></article>
+          <article class="case-card reveal" style="--delay:0ms"><div class="case-visual art-clinic"><div class="clinic-window"><div class="clinic-nav"><div class="clinic-logo"><span class="clinic-cross">✳</span> forma health</div><span>УСЛУГИ　 ВРАЧИ　 КОНТАКТЫ</span></div><div class="clinic-main"><div><h4>Забота,<br>которую<br><span>чувствуешь.</span></h4><p>Современная медицина с человеческим отношением.</p><span class="clinic-pill">Записаться на приём ↗</span></div><div class="clinic-person"><div class="clinic-hair"></div></div></div></div></div><div class="case-meta"><div><h3>Forma Health — клиника</h3><p>Сайт услуг · Запись · Команда специалистов</p></div><span class="case-link" aria-hidden="true">↗</span></div></article>
+          <article class="case-card reveal" style="--delay:110ms"><div class="case-visual art-commerce"><div class="commerce-window"><div class="commerce-nav"><span>SŌL OBJECTS</span><span>SHOP　 ABOUT　 BAG (0)</span></div><div class="commerce-content"><small>OBJECTS FOR SLOW LIVING</small><h4>Less,<br><em>but</em> better.</h4><p>Предметы, которые хочется оставить рядом надолго.</p></div><div class="product-bottle"></div><div class="commerce-disc"></div></div></div><div class="case-meta"><div><h3>SŌL — товары для дома</h3><p>Каталог · Карточки товаров · Корзина</p></div><span class="case-link" aria-hidden="true">↗</span></div></article>
+        </div>
+        <div class="case-footnote reveal"><span>Показаны демонстрационные концепции оформления.</span><a href="#contact" class="btn btn-outline">Хочу сайт в таком стиле <span class="arrow">↗</span></a></div>
+      </div>
+    </section>
+
+    <section class="admin-section section" id="admin">
+      <div class="container admin-layout">
+        <div class="admin-copy reveal"><span class="eyebrow">Ваш сайт — ваши правила</span><h2>Внутри так же<br><span class="accent">красиво.</span></h2><p class="lead">Сайт не должен требовать разработчика для каждой мелочи. Сделаем удобную админку, в которой легко разобраться с первого дня.</p>
+          <ul class="admin-benefits"><li><span class="check">✓</span><span>Редактируйте тексты, фото и блоки самостоятельно.</span></li><li><span class="check">✓</span><span>Добавляйте услуги, проекты и товары без лишних действий.</span></li><li><span class="check">✓</span><span>Смотрите заявки и держите важное под рукой.</span></li></ul>
+          <a class="btn btn-dark" href="#contact">Показать админку под мой проект <span class="arrow">↗</span></a>
+        </div>
+        <div class="reveal" style="--delay:120ms">
+          <div class="admin-demo">
+            <div class="admin-top"><div class="admin-brand"><span class="admin-brandmark">ф.</span><span>Панель управления</span></div><span class="admin-status">● Все изменения сохранены</span></div>
+            <div class="admin-body">
+              <aside class="admin-sidebar"><div class="admin-side-label">Рабочее пространство</div><button class="admin-tab active" data-tab="overview"><span class="tab-symbol">▦</span> Обзор</button><button class="admin-tab" data-tab="pages"><span class="tab-symbol">▤</span> Страницы</button><button class="admin-tab" data-tab="projects"><span class="tab-symbol">▧</span> Проекты</button><button class="admin-tab" data-tab="leads"><span class="tab-symbol">↳</span> Заявки <span style="margin-left:auto;background:var(--blue);color:white;border-radius:5px;padding:2px 5px;font-size:8px">4</span></button><button class="admin-tab" data-tab="settings"><span class="tab-symbol">⚙</span> Настройки</button></aside>
+              <div class="admin-main" id="adminMain" aria-live="polite">
+                <div class="admin-content"><div class="admin-heading"><div><h3>Добро пожаловать!</h3><p>Вот что происходит с вашим сайтом.</p></div><button class="admin-mini-btn">Сегодня⌄</button></div><div class="admin-stats"><div class="admin-stat"><span>Посетители</span><strong>2 481</strong><small>↗ 12,8%</small></div><div class="admin-stat"><span>Заявки</span><strong>86</strong><small>↗ 8,2%</small></div><div class="admin-stat"><span>Конверсия</span><strong>3,46%</strong><small>↗ 0,6%</small></div></div><div class="admin-panel"><div class="admin-panel-title"><span>Активность сайта</span><span style="color:var(--muted);font-weight:500">За 7 дней</span></div><div class="chart"><span class="chart-bar" style="height:38%"></span><span class="chart-bar" style="height:55%"></span><span class="chart-bar" style="height:46%"></span><span class="chart-bar" style="height:74%"></span><span class="chart-bar" style="height:61%"></span><span class="chart-bar" style="height:90%"></span><span class="chart-bar" style="height:69%"></span><span class="chart-bar" style="height:100%"></span><span class="chart-bar" style="height:78%"></span><span class="chart-bar" style="height:88%"></span></div><div class="chart-labels"><span>Пн</span><span>Вт</span><span>Ср</span><span>Чт</span><span>Пт</span><span>Сб</span><span>Вс</span></div></div><div class="admin-note"><span>✓</span> Вы можете менять контент в любой момент</div></div>
+              </div>
+            </div>
+          </div>
+          <p style="font-size:11px;color:var(--muted);margin:14px 0 0;text-align:center">Интерактивный макет — нажмите на разделы слева.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section process" id="process">
+      <div class="container">
+        <div class="section-head reveal"><div><span class="eyebrow">Понятный процесс</span><h2>От «есть идея»<br>до «<span style="color:var(--acid)">сайт готов</span>».</h2></div><p class="lead">Без хаоса, технического языка и бесконечных согласований. Вы понимаете, что происходит на каждом этапе.</p></div>
+        <div class="process-grid">
+          <article class="process-card reveal"><span class="process-line"></span><span class="process-num">ШАГ 01</span><h3>Знакомимся</h3><p>Обсуждаем задачи, аудиторию, конкурентов и то, каким должен быть результат.</p></article>
+          <article class="process-card reveal" style="--delay:90ms"><span class="process-line"></span><span class="process-num">ШАГ 02</span><h3>Проектируем</h3><p>Собираем структуру, сценарии пользователя и визуальную концепцию.</p></article>
+          <article class="process-card reveal" style="--delay:180ms"><span class="process-line"></span><span class="process-num">ШАГ 03</span><h3>Создаём</h3><p>Разрабатываем сайт, адаптируем под устройства и подключаем нужные функции.</p></article>
+          <article class="process-card reveal" style="--delay:270ms"><span class="process-line"></span><span class="process-num">ШАГ 04</span><h3>Запускаем</h3><p>Проверяем всё перед публикацией, передаём доступы и показываем, как управлять сайтом.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="pricing">
+      <div class="container">
+        <div class="section-head reveal"><div><span class="eyebrow">Форматы сотрудничества</span><h2>Под вашу задачу,<br><span class="accent">а не наоборот.</span></h2></div><p class="lead">Точный состав и стоимость определяем после знакомства с проектом. Ниже — ориентир по форматам.</p></div>
+        <div class="pricing-grid">
+          <article class="price-card reveal"><span class="price-label">Быстрый старт</span><h3>Лендинг</h3><p>Чтобы представить продукт, проверить гипотезу или собирать заявки.</p><div class="price">от 60 000 ₽</div><div class="price-detail">Срок — от 2 недель</div><ul class="price-features"><li>Структура и дизайн страницы</li><li>Адаптация под смартфоны</li><li>Форма заявки</li><li>Базовая SEO-подготовка</li></ul><a class="btn btn-outline" href="#contact" data-plan="Лендинг">Обсудить лендинг <span class="arrow">↗</span></a></article>
+          <article class="price-card featured reveal" style="--delay:100ms"><span class="price-label">Чаще выбирают</span><h3>Сайт компании</h3><p>Полноценное представление бренда, услуг, команды и кейсов.</p><div class="price">от 120 000 ₽</div><div class="price-detail">Срок — от 3–5 недель</div><ul class="price-features"><li>Индивидуальный дизайн</li><li>Несколько страниц</li><li>Удобная система управления</li><li>Интеграции и аналитика</li></ul><a class="btn" href="#contact" data-plan="Сайт компании">Обсудить сайт <span class="arrow">↗</span></a></article>
+          <article class="price-card reveal" style="--delay:200ms"><span class="price-label">Больше возможностей</span><h3>Интернет-магазин</h3><p>Каталог, карточки товаров и основа для онлайн-продаж.</p><div class="price">от 180 000 ₽</div><div class="price-detail">Срок — от 5–7 недель</div><ul class="price-features"><li>Каталог и карточки товаров</li><li>Корзина и формы заказа</li><li>Управление контентом</li><li>Подключение сервисов</li></ul><a class="btn btn-outline" href="#contact" data-plan="Интернет-магазин">Обсудить магазин <span class="arrow">↗</span></a></article>
+        </div>
+        <p class="reveal" style="font-size:11px;line-height:1.6;color:var(--muted);margin:22px 0 0">Стоимость и сроки указаны как пример для демонстрационного макета. Их можно заменить на ваши реальные условия.</p>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container faq-layout">
+        <div class="reveal"><span class="eyebrow">Частые вопросы</span><h2>Давайте<br>проясним.</h2><p class="lead" style="margin-top:20px">Всё важное — до старта работ, чтобы на каждом этапе было спокойно и понятно.</p></div>
+        <div class="faq-list reveal" style="--delay:100ms">
+          <div class="faq-item open"><button class="faq-question" aria-expanded="true">Что входит в сайт под ключ?<span class="faq-plus">+</span></button><div class="faq-answer"><div><p>Структура, дизайн, разработка, адаптация под мобильные устройства, подключение согласованных функций, проверка перед запуском и передача доступов. Точный состав фиксируем в начале проекта.</p></div></div></div>
+          <div class="faq-item"><button class="faq-question" aria-expanded="false">Смогу ли я менять сайт самостоятельно?<span class="faq-plus">+</span></button><div class="faq-answer"><div><p>Да. Предусматриваем удобный способ редактирования контента и показываем, как обновлять тексты, изображения, услуги или кейсы без программирования.</p></div></div></div>
+          <div class="faq-item"><button class="faq-question" aria-expanded="false">Сколько времени занимает разработка?<span class="faq-plus">+</span></button><div class="faq-answer"><div><p>Зависит от объёма и функциональности. Небольшой лендинг обычно занимает меньше времени, чем корпоративный сайт или магазин. Реальный график согласуем после обсуждения задачи.</p></div></div></div>
+          <div class="faq-item"><button class="faq-question" aria-expanded="false">Что нужно подготовить перед стартом?<span class="faq-plus">+</span></button><div class="faq-answer"><div><p>Достаточно рассказать о бизнесе, услуге и цели сайта. Поможем определить структуру, подготовим список нужных материалов и подскажем, что можно сделать вместе с нами.</p></div></div></div>
+          <div class="faq-item"><button class="faq-question" aria-expanded="false">Можно ли доработать сайт позже?<span class="faq-plus">+</span></button><div class="faq-answer"><div><p>Да. Можно начать с необходимого функционала, а затем добавлять новые разделы, интеграции или возможности по мере развития бизнеса.</p></div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container"><div class="contact-card reveal"><div class="contact-inner"><div><span class="eyebrow">Следующий шаг — за вами</span><h2>Пора сделать сайт, которым <span style="color:var(--acid)">гордятся.</span></h2><p class="lead">Расскажите в двух словах о задаче. Вернёмся с вопросами, предложим формат и объясним, с чего лучше начать.</p></div>
+        <form class="contact-form" id="contactForm"><div><label for="name">Как к вам обращаться</label><input id="name" name="name" placeholder="Ваше имя" required></div><div><label for="contactWay">Куда ответить</label><input id="contactWay" name="contactWay" placeholder="Telegram, email или телефон" required></div><div><label for="project">Что нужно сделать? (необязательно)</label><textarea id="project" name="project" placeholder="Например, сайт для студии интерьера"></textarea></div><div class="form-message" id="formMessage" role="status">Спасибо! Форма работает в режиме демонстрации. Для реальных заявок её нужно подключить к вашей почте или CRM.</div><button class="btn btn-dark" type="submit">Обсудить проект <span class="arrow">↗</span></button><p class="form-privacy">Нажимая кнопку, вы соглашаетесь на обработку указанных данных.</p></form>
+      </div></div></div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="container footer-row"><a class="brand" href="#top"><span class="brand-mark">ф.</span><span>форма<span style="color:var(--blue)">®</span></span></a><span>© 2026 · Сайты под ключ с вниманием к деталям.</span><div class="footer-links"><a href="#services">Услуги</a><a href="#cases">Кейсы</a><a href="#contact">Контакт</a><a href="#top">Наверх ↑</a></div></div></footer>
+</div>
+<script>
+(function() {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && !reduceMotion) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.13, rootMargin: '0px 0px -30px 0px' });
+    reveals.forEach(el => io.observe(el));
+  } else {
+    reveals.forEach(el => el.classList.add('visible'));
+  }
+
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  menuToggle.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', String(open));
+    menuToggle.textContent = open ? '×' : '☰';
+  });
+  navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+    menuToggle.textContent = '☰';
+  }));
+
+  const adminMain = document.getElementById('adminMain');
+  const adminTabs = document.querySelectorAll('.admin-tab');
+  const views = {
+    overview: `<div class="admin-content"><div class="admin-heading"><div><h3>Добро пожаловать!</h3><p>Вот что происходит с вашим сайтом.</p></div><button class="admin-mini-btn">Сегодня⌄</button></div><div class="admin-stats"><div class="admin-stat"><span>Посетители</span><strong>2 481</strong><small>↗ 12,8%</small></div><div class="admin-stat"><span>Заявки</span><strong>86</strong><small>↗ 8,2%</small></div><div class="admin-stat"><span>Конверсия</span><strong>3,46%</strong><small>↗ 0,6%</small></div></div><div class="admin-panel"><div class="admin-panel-title"><span>Активность сайта</span><span style="color:var(--muted);font-weight:500">За 7 дней</span></div><div class="chart">${[38,55,46,74,61,90,69,100,78,88].map(h=>`<span class="chart-bar" style="height:${h}%"></span>`).join('')}</div><div class="chart-labels"><span>Пн</span><span>Вт</span><span>Ср</span><span>Чт</span><span>Пт</span><span>Сб</span><span>Вс</span></div></div><div class="admin-note"><span>✓</span> Вы можете менять контент в любой момент</div></div>`,
+    pages: `<div class="admin-content"><div class="admin-heading"><div><h3>Страницы сайта</h3><p>Управляйте структурой и публикациями.</p></div><button class="admin-mini-btn">＋ Добавить</button></div><div class="admin-panel"><div class="admin-panel-title"><span>Все страницы</span><span style="color:var(--muted);font-weight:500">4 страницы</span></div><div class="admin-list"><div class="admin-row"><b>Главная</b><span>● Опубликована</span></div><div class="admin-row"><b>О компании</b><span>● Опубликована</span></div><div class="admin-row"><b>Услуги</b><span>● Опубликована</span></div><div class="admin-row"><b>Контакты</b><span>● Опубликована</span></div></div></div><div class="admin-note"><span>✎</span> Тексты и изображения можно обновлять без кода</div></div>`,
+    projects: `<div class="admin-content"><div class="admin-heading"><div><h3>Ваши проекты</h3><p>Кейсы, которыми хочется делиться.</p></div><button class="admin-mini-btn">＋ Новый кейс</button></div><div class="admin-panel"><div class="admin-panel-title"><span>Последние записи</span><span style="color:var(--muted);font-weight:500">3 кейса</span></div><div class="admin-list"><div class="admin-row"><b>Айдентика Botanica</b><span>Опубликован</span></div><div class="admin-row"><b>Сайт Atelier</b><span>Опубликован</span></div><div class="admin-row"><b>Запуск Forma Health</b><span>Черновик</span></div></div></div><div class="admin-note"><span>＋</span> Добавляйте новые кейсы за пару минут</div></div>`,
+    leads: `<div class="admin-content"><div class="admin-heading"><div><h3>Входящие заявки</h3><p>Новые обращения с сайта в одном месте.</p></div><button class="admin-mini-btn">Фильтр⌄</button></div><div class="admin-stats"><div class="admin-stat"><span>Новые</span><strong>4</strong><small>требуют ответа</small></div><div class="admin-stat"><span>В работе</span><strong>12</strong><small>на этой неделе</small></div><div class="admin-stat"><span>Всего</span><strong>86</strong><small>за месяц</small></div></div><div class="admin-panel"><div class="admin-panel-title"><span>Недавние обращения</span></div><div class="admin-list"><div class="admin-row"><b>Мария К.</b><span>10:42 · Новый</span></div><div class="admin-row"><b>Александр П.</b><span>Вчера · В работе</span></div><div class="admin-row"><b>Елена С.</b><span>Вчера · Новый</span></div></div></div></div>`,
+    settings: `<div class="admin-content"><div class="admin-heading"><div><h3>Настройки сайта</h3><p>Основная информация и доступы.</p></div></div><div class="admin-panel"><div class="admin-panel-title"><span>Основные параметры</span></div><div class="admin-list"><div class="admin-row"><span>Название сайта</span><b>Ваша компания</b></div><div class="admin-row"><span>Домен</span><b>your-brand.ru</b></div><div class="admin-row"><span>Язык сайта</span><b>Русский</b></div><div class="admin-row"><span>Резервные копии</span><b>Включены ✓</b></div></div></div><div class="admin-note"><span>⚙</span> Настроим доступы и покажем основные действия</div></div>`
+  };
+  adminTabs.forEach(tab => tab.addEventListener('click', () => {
+    adminTabs.forEach(t => t.classList.toggle('active', t === tab));
+    adminMain.innerHTML = views[tab.dataset.tab] || views.overview;
+  }));
+
+  document.querySelectorAll('.faq-question').forEach(button => button.addEventListener('click', () => {
+    const item = button.closest('.faq-item');
+    const opening = !item.classList.contains('open');
+    item.classList.toggle('open', opening);
+    button.setAttribute('aria-expanded', String(opening));
+  }));
+
+  const form = document.getElementById('contactForm');
+  const message = document.getElementById('formMessage');
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+    message.classList.add('show');
+    message.scrollIntoView({behavior: reduceMotion ? 'auto' : 'smooth', block:'nearest'});
+  });
+  document.querySelectorAll('[data-plan]').forEach(link => link.addEventListener('click', () => {
+    const project = document.getElementById('project');
+    project.value = 'Интересует формат: ' + link.dataset.plan + '. ' + project.value;
+  }));
+})();
+</script>
+</body>
+</html>
